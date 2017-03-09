@@ -1,0 +1,30 @@
+#########################
+# Iridium 9603 Lite USB #
+#########################
+
+An untested design for a very small, lightweight, USB-powered Iridium 9603 satellite communication module.
+Dimensions are 35mm x 44mm x 18mm and the populated PCB will weigh close to 33g (including the antenna).
+
+The USB interface is provided by a Cypress CY7C65213 USB-UART Bridge.
+
+Power for the Iridium 9603 is provided by a Linear Technology LTC3225EDDB supercapacitor charger.
+
+See Iridium_9603_Lite_USB.pdf for a full description of the project:
+https://github.com/PaulZC/Iridium_9603_Lite_USB/blob/master/Iridium_9603_Lite_USB.pdf
+
+The Python code can be found in Iridium_9603_Lite_USB.py
+https://github.com/PaulZC/Iridium_9603_Lite_USB/blob/master/Iridium_9603_Lite_USB.py
+
+The PCB schematic, layout and bill of materials can be found in:
+https://github.com/PaulZC/Iridium_9603_Lite_USB/blob/master/Iridium_9603_Lite_USB_V1.pdf
+
+The Eagle files can be found in:
+https://github.com/PaulZC/Iridium_9603_Lite_USB/tree/master/Eagle/V1
+
+Iridium_9603_Lite_USB.cyusb contains the configuration file for Cypress' USB Serial Configuration Utility.
+
+This project is distributed under a Creative Commons Attribution + Share-alike (BY-SA) licence.
+
+Enjoy!
+
+Paul

@@ -4567,6 +4567,8 @@ Molex uFL Plug/Plug 50mm 73412-0508</text>
 <approved hash="202,1,187.96,86.36,U3,RESET,,,,"/>
 <approved hash="104,1,187.96,96.52,U3,VCCIO,+3V3,,,"/>
 <approved hash="104,1,213.36,45.72,X1,VBUS,VCC,,,"/>
+<approved hash="209,1,53.34,121.92,SHDN,,,,,"/>
+<approved hash="209,1,218.44,73.66,SHDN,,,,,"/>
 <approved hash="113,1,131.168,89.431,FRAME3,,,,,"/>
 <approved hash="113,1,205.105,41.9312,X1,,,,,"/>
 </errors>

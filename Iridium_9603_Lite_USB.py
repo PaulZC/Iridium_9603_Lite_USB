@@ -2,6 +2,9 @@
 
 # Tested with Python 2.7 on Windows 10 64-Bit
 
+# Tested with Python 2.7 on Linux (Raspberry Pi) using
+# https://github.com/PaulZC/python-ucdev
+
 # 9603 power is provided by LTC3225 supercapacitor charger (charged from USB port)
 # 9603 module is interfaced via a Cypress CY7C65213:
 # GPIO_0 is Tx/Rx LED
@@ -18,22 +21,36 @@ from cy7c65213 import CyUSBSerial, CyGPIO
 # Define serial port
 # Check Device Manager for the correct port name (on Windows)
 serport = 'COM1'
+# Linux (ls /dev/tty*)
+#serport = '/dev/ttyACM0'
+
+# Point to the DLL provided by Cypress
+# Windows
+dll = "C:\\Program Files (x86)\\Cypress\\USB-Serial SDK\\library\\cyusbserial\\x64\\cyusbserial.dll"
+# Linux
+#dll = "/usr/local/lib/libcyusbserial.so"
+
+# CY7C65213 Pin Definitions
+ON_pin      = 1 # 9603 ON/OFF = GPIO_1
+PGOOD_pin   = 2 # LTC3225 PGOOD = GPIO_2
+NET_pin     = 3 # 9603 Network Available = GPIO_3
+SHDN_pin    = 4 # LTC3225 Shutdown = GPIO_4
 
 class IridiumUSBport(object):
     
     def __init__(self):
         print 'Opening GPIO...'
         # Load DLL provided by Cypress (Windows notation)
-        self.dll = "C:\\Program Files (x86)\\Cypress\\USB-Serial SDK\\library\\cyusbserial\\x64\\cyusbserial.dll"
+        self.dll = dll
         self.lib = CyUSBSerial(lib = self.dll)
         #self.dev = self.lib.find().next() # Use first device found
         self.dev = self.lib.find(vid=0x04B4,pid=0x0003).next() # Look for a specific vendor and product id
         # Access GPIO
         self.gpio = CyGPIO(self.dev)
-        self.ON_pin = self.gpio.pin(1) # 9603 ON/OFF = GPIO_1
-        self.PGOOD_pin = self.gpio.pin(2) # LTC3225 PGOOD = GPIO_2
-        self.NET_pin = self.gpio.pin(3) # 9603 Network Available = GPIO_3
-        self.SHDN_pin = self.gpio.pin(4) # LTC3225 Shutdown = GPIO_4
+        self.ON_pin = self.gpio.pin(ON_pin) # 9603 ON/OFF = GPIO_1
+        self.PGOOD_pin = self.gpio.pin(PGOOD_pin) # LTC3225 PGOOD = GPIO_2
+        self.NET_pin = self.gpio.pin(NET_pin) # 9603 Network Available = GPIO_3
+        self.SHDN_pin = self.gpio.pin(SHDN_pin) # LTC3225 Shutdown = GPIO_4
         
         print 'Opening serial port...'
         self.ser = serial.Serial(serport,19200,timeout=1)
